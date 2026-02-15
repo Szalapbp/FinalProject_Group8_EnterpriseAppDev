@@ -144,7 +144,7 @@ Then only matching products are displayed
 6.   Scrum Roles.
 - Scrum Master – Rahim Zowange
 - UI Specialist – Jaxon Coniglio, Blake Szalapski
-- Business logic/ Persistence Specialist – Drew Spampinato
+- Business logic/ Persistence Specialist – Drew Spampinato, Drew Sellars
 
 7. github.com project link
 - https://github.com/Szalapbp/FinalProject_Group8_EnterpriseAppDev.git
