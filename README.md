@@ -2,7 +2,7 @@
 Group 8 Enterprise App Dev Final Project Spring 2026
 1. Introduction: UC Collectibles is an online store for University of Cincinnati Bearcats merchandise. Customers can browse and shop for official UC apparel, activewear, and accessories. The site requires an account to view products. New customers create an account with their email, full name, and password. Existing customers log in to access the catalog. Once logged in, customers see a homepage with featured products, a hero section, and key features (premium quality, official merchandise, fast shipping). The Products page shows all available items in a grid with images, names, prices, and categories. Customers can filter by category (Apparel, Activewear, Accessories) and sort by featured, price (low to high or high to low), or name. They can also search for products by name. Featured items are highlighted with a badge. Each product card shows the image, name, price, category, and stock status. The site is responsive and works on mobile, tablet, and desktop. Currently, customers can browse and search products, but cannot add items to a cart, view product details, or complete purchases. Future features will include shopping cart, checkout, and order management. The platform focuses on showcasing UC Bearcats merchandise and providing a smooth browsing experience for fans and supporters.
 
- 2. (Storyboard):                                                                                                                                                                                                                          https://github.com/Szalapbp/FinalProject_Group8_EnterpriseAppDev/blob/main/UCCollectiblesLogin.png                                                                                                                                                                                                                                                                                                                                                                                  https://github.com/Szalapbp/FinalProject_Group8_EnterpriseAppDev/blob/main/UCCollectiblesHome.png
+ 2. (Storyboard):                                                                                                                                                                                                                          ![LoginPage](UCCollectiblesLogin.png)                                                                                                                                                                                                                                                                                                                                                                                                                                              ![Home Page](UCCollectiblesHome.png)
  3.
 Functional Requirement #1
 As a new customer
@@ -44,7 +44,7 @@ Then only matching products are displayed
 
 4.  UML – Class Diagrams
  
-https://github.com/Szalapbp/FinalProject_Group8_EnterpriseAppDev/blob/main/UCCollectiblesUMLClassDiagram.png
+![UML Diagram](UCCollectiblesUMLClassDiagram.png)
 
 
 
@@ -143,4 +143,4 @@ https://github.com/Szalapbp/FinalProject_Group8_EnterpriseAppDev/blob/main/UCCol
 7. github.com project link
 - https://github.com/Szalapbp/FinalProject_Group8_EnterpriseAppDev.git
 8.  Github Repository Milestones 
-9.   https://github.com/Szalapbp/FinalProject_Group8_EnterpriseAppDev/blob/main/Group8Teams.png                                                                                                                                        This is the Teams chat we use to meet weekly.
+9.   ![TeamsGroup](Group8Teams.png)                                                                                                                                        This is the Teams chat we use to meet weekly.
