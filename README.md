@@ -152,4 +152,5 @@ Then only matching products are displayed
 9.
 
    ![TeamsGroup](Group8Teams.png)
-                                                                                                                                    This is the Teams chat we use to meet weekly.
+
+   This is the Teams chat we use to meet weekly.
