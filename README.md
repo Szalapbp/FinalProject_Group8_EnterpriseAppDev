@@ -149,8 +149,8 @@ Then only matching products are displayed
 7. github.com project link
 - https://github.com/Szalapbp/FinalProject_Group8_EnterpriseAppDev.git
 8.  Github Repository Milestones 
-9.
+9.This is the Teams chat we use to meet weekly.
 
    ![TeamsGroup](Group8Teams.png)
 
-   This is the Teams chat we use to meet weekly.
+   
