@@ -58,6 +58,7 @@ Then only matching products are displayed
 
 
 5.     JSON Schema.
+```json
 - {
   "$schema": "http://json-schema.org/draft-07/schema#",
   "$id": "https://api.uccollectibles.com/schemas/products-response.json",
@@ -131,7 +132,7 @@ Then only matching products are displayed
     }
   }
 }
-
+```
 
 
 
