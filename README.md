@@ -151,6 +151,6 @@ Then only matching products are displayed
 8.  Github Repository Milestones 
 9.
 
-   ![TeamsGroup](Group8Teams.png)
+   ![TeamsGroup](README_Images/Group8Teams.png)
 
    This is the Teams chat we use to meet weekly.
