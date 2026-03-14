@@ -26,10 +26,10 @@ public class OrderItem {
     private Product product;
 
     @Column(name = "product_name", nullable = false, length = 255)
-    private String productName;  // Snapshot
+    private String productName;
 
     @Column(nullable = false, precision = 10, scale = 2)
-    private BigDecimal price;  // Snapshot
+    private BigDecimal price;
 
     @Column(nullable = false)
     private Integer quantity;
