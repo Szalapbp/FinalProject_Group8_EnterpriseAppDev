@@ -3,10 +3,14 @@ package com.bearcat.store_api.service.impl;
 import com.bearcat.store_api.dao.OrderDao;
 import com.bearcat.store_api.entities.Order;
 import com.bearcat.store_api.entities.OrderItem;
+import com.bearcat.store_api.entities.User;
 import com.bearcat.store_api.service.OrderService;
 import org.springframework.stereotype.Service;
+
+import java.math.BigDecimal;
 import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
 
 @Service
 public class OrderServiceImpl implements OrderService {
@@ -18,17 +22,28 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
-    public Order createOrder(Long userId, String shippingAddress, List<OrderItem> items) {
+    public Order createOrder(UUID userId, String shippingAddress, List<OrderItem> items) {
+
+        User user = new User();
+        user.setId(userId);
+
         Order order = new Order();
-        order.setUserId(userId);
+        order.setUser(user);
         order.setShippingAddress(shippingAddress);
         order.setItems(items);
 
-        double total = 0.0;
+        int total = 0;
         for (OrderItem item : items) {
-            total += item.getPrice() * item.getQuantity();
+
+            total += item.getPrice().multiply(new BigDecimal(item.getQuantity())).intValue();
         }
-        order.setTotalAmount(total);
+        order.setTotalAmount(BigDecimal.valueOf(total));
+
+        if (items != null) {
+            for (OrderItem item : items) {
+                item.setOrder(order);
+            }
+        }
 
         return orderDao.save(order);
     }
@@ -39,7 +54,7 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
-    public List<Order> getUserOrders(Long userId) {
+    public List<Order> getUserOrders(UUID userId) {
         return orderDao.findByUserId(userId);
     }
 }
