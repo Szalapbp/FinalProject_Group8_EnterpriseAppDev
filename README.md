@@ -4,9 +4,9 @@ Group 8 Enterprise App Dev Final Project Spring 2026
 
  2. (Storyboard):
 
-   ![LoginPage](UCCollectiblesLogin.png)
+   ![LoginPage](README_Images/UCCollectiblesLogin.png)
 
-   ![Home Page](UCCollectiblesHome.png)
+   ![Home Page](README_Images/UCCollectiblesHome.png)
 
   3.
 Functional Requirement #1
@@ -49,7 +49,7 @@ Then only matching products are displayed
 
 4.  UML – Class Diagrams
  
-![UML Diagram](UCCollectiblesUMLClassDiagram.png)
+![UML Diagram](README_Images/UCCollectiblesUMLClassDiagram.png)
 
 
 
@@ -64,7 +64,7 @@ Then only matching products are displayed
 
 5.     JSON Schema.
 ```json
-- {
+{
   "$schema": "http://json-schema.org/draft-07/schema#",
   "$id": "https://api.uccollectibles.com/schemas/products-response.json",
   "title": "UC Collectibles Products API Response",
@@ -151,6 +151,6 @@ Then only matching products are displayed
 8.  Github Repository Milestones 
 9.
 
-   ![TeamsGroup](Group8Teams.png)
+   ![TeamsGroup](README_Images/Group8Teams.png)
 
    This is the Teams chat we use to meet weekly.
