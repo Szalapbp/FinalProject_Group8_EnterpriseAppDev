@@ -6,11 +6,13 @@ import org.springframework.stereotype.Repository;
 import java.math.BigDecimal;
 import java.util.*;
 import java.util.stream.Collectors;
+import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 
 
 @Repository
 public class ProductDaoStub implements ProductDao{
-    private final Map<Long, Product> store = new HashMap<>();
+    private final Map<Long, Product> store = new ConcurrentHashMap<>();
     private long nextId = 1;
 
     public ProductDaoStub() {
