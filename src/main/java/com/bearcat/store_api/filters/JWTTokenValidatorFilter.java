@@ -30,8 +30,10 @@ public class JWTTokenValidatorFilter extends OncePerRequestFilter {
             try {
                 Environment env = getEnvironment();
                 if (null != env) {
-                    String secret = env.getProperty(ApplicationConstants.JWT_SECRET_KEY,
-                            ApplicationConstants.JWT_SECRET_DEFAULT_VALUE);
+                    String secret = env.getProperty(ApplicationConstants.JWT_SECRET_KEY);
+                    if (secret == null || secret.isBlank()) {
+                        throw new BadCredentialsException("JWT secret is not configured.");
+                    }
                     SecretKey secretKey = Keys.hmacShaKeyFor(secret.getBytes(StandardCharsets.UTF_8));
                     if (null != secretKey) {
                         Claims claims = Jwts.parser().verifyWith(secretKey)
