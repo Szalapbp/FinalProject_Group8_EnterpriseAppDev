@@ -1,16 +1,21 @@
 package com.bearcat.store_api.entities;
 
-
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
-import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.annotation.LastModifiedDate;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import java.time.Instant;
 import java.util.UUID;
 
 @Entity
 @Table(name = "users")
-@Data
+@Getter
+@Setter
+@EntityListeners(AuditingEntityListener.class)
 public class User {
 
     @Id
@@ -27,13 +32,5 @@ public class User {
     @JsonIgnore
     @Column(name = "password_hash", nullable = false)
     private String passwordHash;
-
-    @JsonIgnore
-    @Column(name = "created_at", updatable = false)
-    private Instant createdAt = Instant.now();
-
-    @JsonIgnore
-    @Column(name = "updated_at")
-    private Instant updatedAt = Instant.now();
 
 }

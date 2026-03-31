@@ -2,12 +2,13 @@ package com.bearcat.store_api.entities;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
-import lombok.Data;
-
+import lombok.Getter;
+import lombok.Setter;
 
 @Entity
-@Data
 @Table(name = "cart_items")
+@Getter
+@Setter
 public class CartItem {
 
     @Id
@@ -26,7 +27,6 @@ public class CartItem {
     @Column(nullable = false)
     private Integer quantity;
 
-    @Column(nullable = false, length = 10)
+    @Column(length = 20)
     private String size;
-
 }
