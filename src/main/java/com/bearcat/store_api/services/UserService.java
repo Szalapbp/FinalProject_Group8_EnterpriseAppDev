@@ -5,6 +5,8 @@ import com.bearcat.store_api.repositories.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.UUID;
+
 @Service
 @RequiredArgsConstructor
 public class UserService {
@@ -28,4 +30,11 @@ public class UserService {
         }
         return user;
     }
+
+    // Add to UserService — needed by CartController and OrderController
+    public User getUserById(UUID id) {
+        return userRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("User not found"));
+    }
+
 }
