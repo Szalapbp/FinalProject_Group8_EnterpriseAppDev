@@ -1,4 +1,0 @@
-
-
-
-database_password=mxmRJ0XuPH5eIY79

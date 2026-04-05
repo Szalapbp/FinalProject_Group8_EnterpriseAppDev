@@ -1,7 +1,8 @@
 package com.bearcat.store_api.entities;
 
 import jakarta.persistence.*;
-import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 import org.hibernate.annotations.JdbcTypeCode;
 import org.hibernate.type.SqlTypes;
 
@@ -10,9 +11,9 @@ import java.util.List;
 
 @Entity
 @Table(name = "products")
-@Data
+@Getter
+@Setter
 public class Product {
-
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -21,24 +22,22 @@ public class Product {
     @Column(nullable = false)
     private String name;
 
-    @Column(nullable = false)
+    @Column(nullable = false, precision = 10, scale = 2)
     private BigDecimal price;
 
-    @Column
     private String category;
 
-    @Column
     @JdbcTypeCode(SqlTypes.ARRAY)
+    @Column(name = "images", columnDefinition = "text[]")
     private List<String> images;
 
-    @Column
     @JdbcTypeCode(SqlTypes.ARRAY)
+    @Column(name = "sizes", columnDefinition = "text[]")
     private List<String> sizes;
 
-    @Column
-    private boolean featured;
+    private boolean featured = false;
 
-    @Column
-    private boolean inStock;
+    @Column(name = "in_stock")
+    private boolean inStock = true;
 
 }
