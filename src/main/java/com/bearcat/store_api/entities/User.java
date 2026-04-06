@@ -4,11 +4,8 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
-import org.springframework.data.annotation.CreatedDate;
-import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
-import java.time.Instant;
 import java.util.UUID;
 
 @Entity
@@ -24,13 +21,13 @@ public class User {
     private UUID id;
 
     @Column(nullable = false, unique = true)
-    private String email;
+    private String email = "";
 
     @Column(name = "full_name")
-    private String fullName;
+    private String fullName = "";
 
     @JsonIgnore
     @Column(name = "password_hash", nullable = false)
-    private String passwordHash;
+    private String passwordHash = "";
 
 }
