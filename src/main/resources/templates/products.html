@@ -1,10 +1,79 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Shop — UC Collectibles</title>
+    <link rel="stylesheet" th:href="@{/styles.css}"/>
 </head>
 <body>
 
+<div th:replace="~{fragments/header :: header}"></div>
+
+<form th:action="@{/products}" method="get" class="controls" id="filterForm">
+    <input type="text" name="search" placeholder="Search…"
+           th:value="${search}" oninput="debounce()"/>
+    <input type="hidden" name="category" th:value="${selectedCategory}"/>
+    <input type="hidden" name="sort"     th:value="${selectedSort}"/>
+
+    <div class="pills">
+        <a th:href="@{/products(sort=${selectedSort},search=${search})}"
+           class="pill" th:classappend="${selectedCategory == '' or selectedCategory == null} ? ' active'">All</a>
+        <a th:href="@{/products(category='Apparel',sort=${selectedSort},search=${search})}"
+           class="pill" th:classappend="${selectedCategory == 'Apparel'} ? ' active'">Apparel</a>
+        <a th:href="@{/products(category='Activewear',sort=${selectedSort},search=${search})}"
+           class="pill" th:classappend="${selectedCategory == 'Activewear'} ? ' active'">Activewear</a>
+        <a th:href="@{/products(category='Accessories',sort=${selectedSort},search=${search})}"
+           class="pill" th:classappend="${selectedCategory == 'Accessories'} ? ' active'">Accessories</a>
+    </div>
+
+    <select name="sort" onchange="this.form.submit()">
+        <option value=""           th:selected="${selectedSort == '' or selectedSort == null}">Sort: Default</option>
+        <option value="featured"   th:selected="${selectedSort == 'featured'}">Featured First</option>
+        <option value="price_asc"  th:selected="${selectedSort == 'price_asc'}">Price: Low–High</option>
+        <option value="price_desc" th:selected="${selectedSort == 'price_desc'}">Price: High–Low</option>
+        <option value="name"       th:selected="${selectedSort == 'name'}">Name A–Z</option>
+    </select>
+</form>
+
+<div class="page-title">
+    <h1>Products</h1>
+    <span th:text="${totalCount} + ' items'">0 items</span>
+</div>
+
+<div class="grid-wrap">
+    <div class="grid" th:if="${products != null and !products.isEmpty()}">
+        <a class="card" th:each="p : ${products}" th:href="@{/products/{id}(id=${p.id})}">
+            <div class="card-img">
+                <img th:if="${p.images != null and !p.images.isEmpty()}"
+                     th:src="${p.images[0]}" th:alt="${p.name}" loading="lazy"/>
+                <span th:unless="${p.images != null and !p.images.isEmpty()}">🐻</span>
+            </div>
+            <div class="card-body">
+                <div class="card-cat"  th:text="${p.category}">Category</div>
+                <div class="card-name" th:text="${p.name}">Name</div>
+                <div class="card-meta">
+                    <div class="card-price" th:text="'$' + ${#numbers.formatDecimal(p.price,1,2)}">$0.00</div>
+                    <span class="badge in-stock"  th:if="${p.inStock}">In Stock</span>
+                    <span class="badge out-stock" th:unless="${p.inStock}">Sold Out</span>
+                </div>
+            </div>
+        </a>
+    </div>
+
+    <div class="empty" th:if="${products == null or products.isEmpty()}">
+        <p>No products found. <a th:href="@{/products}">Clear filters →</a></p>
+    </div>
+</div>
+
+<div th:replace="~{fragments/footer :: footer}"></div>
+
+<script>
+    let t;
+    function debounce() {
+        clearTimeout(t);
+        t = setTimeout(() => document.getElementById('filterForm').submit(), 500);
+    }
+</script>
 </body>
 </html>

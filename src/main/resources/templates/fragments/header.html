@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<body>
+<nav th:fragment="header">
+    <a th:href="@{/home}" style="font-weight:700;color:#111;text-decoration:none;">🐻 UC Collectibles</a>
+    <div>
+        <a th:href="@{/home}">Home</a>
+        <a th:href="@{/products}">Shop</a>
+        <a th:href="@{/cart}">Cart</a>
+        <a th:href="@{/checkout}">Checkout</a>
+        <form th:action="@{/logout}" method="post" style="display:inline">
+            <button type="submit">Sign Out</button>
+        </form>
+    </div>
+</nav>
+
+</body>
+</html>

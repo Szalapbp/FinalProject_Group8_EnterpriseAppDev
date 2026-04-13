@@ -1,10 +1,50 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>UC Collectibles</title>
+    <link rel="stylesheet" th:href="@{/styles.css}"/>
 </head>
 <body>
+
+<div th:replace="~{fragments/header :: header}"></div>
+
+<div class="hero">
+    <h1>Official Bearcats Merchandise</h1>
+    <p>Apparel, activewear, and accessories for UC fans.</p>
+    <a th:href="@{/products}" class="btn">Shop Now</a>
+</div>
+
+<div class="section">
+    <div class="section-header">
+        <h2>Featured Products</h2>
+        <a th:href="@{/products}">View all →</a>
+    </div>
+
+    <div class="grid" th:if="${featuredProducts != null and !featuredProducts.isEmpty()}">
+        <a class="card"
+           th:each="p : ${featuredProducts}"
+           th:href="@{/products/{id}(id=${p.id})}">
+            <div class="card-img">
+                <img th:if="${p.images != null and !p.images.isEmpty()}"
+                     th:src="${p.images[0]}" th:alt="${p.name}"/>
+                <span th:unless="${p.images != null and !p.images.isEmpty()}">🐻</span>
+            </div>
+            <div class="card-body">
+                <div class="card-cat"   th:text="${p.category}">Category</div>
+                <div class="card-name"  th:text="${p.name}">Name</div>
+                <div class="card-price" th:text="'$' + ${#numbers.formatDecimal(p.price,1,2)}">$0.00</div>
+            </div>
+        </a>
+    </div>
+
+    <p class="empty" th:if="${featuredProducts == null or featuredProducts.isEmpty()}">
+        No featured products. <a th:href="@{/products}">Browse all →</a>
+    </p>
+</div>
+
+<div th:replace="~{fragments/footer :: footer}"></div>
 
 </body>
 </html>

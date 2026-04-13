@@ -1,10 +1,58 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Checkout — UC Collectibles</title>
+    <link rel="stylesheet" th:href="@{/styles.css}"/>
 </head>
 <body>
+
+<div th:replace="~{fragments/header :: header}"></div>
+
+<main class="checkout-wrap">
+    <h1 class="checkout-title">Checkout</h1>
+
+    <div class="checkout-layout">
+
+        <!-- Order summary -->
+        <div class="checkout-summary">
+            <h2 class="checkout-section-title">Order Summary</h2>
+            <table class="summary-table">
+                <tbody>
+                <tr th:each="item : ${items}">
+                    <td th:text="${item.product.name}">Product</td>
+                    <td th:text="'Size: ' + ${item.size}" class="summary-meta">Size</td>
+                    <td th:text="'x' + ${item.quantity}" class="summary-meta">x1</td>
+                    <td th:text="'$' + ${#numbers.formatDecimal(item.product.price, 1, 2)}" class="summary-price">$0.00</td>
+                </tr>
+                </tbody>
+                <tfoot>
+                <tr class="summary-total">
+                    <td colspan="3">Total</td>
+                    <td th:text="'$' + ${#numbers.formatDecimal(totalAmount, 1, 2)}">$0.00</td>
+                </tr>
+                </tfoot>
+            </table>
+        </div>
+
+        <!-- Shipping form -->
+        <div class="checkout-form-wrap">
+            <h2 class="checkout-section-title">Shipping Address</h2>
+            <form th:action="@{/checkout}" method="post" class="checkout-form">
+                <textarea name="shippingAddress"
+                          class="checkout-address"
+                          placeholder="Enter your full shipping address..."
+                          rows="4"
+                          required></textarea>
+                <button type="submit" class="btn">Place Order</button>
+            </form>
+        </div>
+
+    </div>
+</main>
+
+<div th:replace="~{fragments/footer :: footer}"></div>
 
 </body>
 </html>

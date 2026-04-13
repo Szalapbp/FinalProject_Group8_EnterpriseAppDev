@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title th:text="${product.name} + ' — UC Collectibles'">Product — UC Collectibles</title>
+    <link rel="stylesheet" th:href="@{/styles.css}"/>
+</head>
+<body>
+
+<div th:replace="~{fragments/header :: header}"></div>
+
+<main class="detail-wrap">
+
+    <!-- Back link -->
+    <a th:href="@{/products}" class="detail-back">← Back to products</a>
+
+    <div class="detail-layout">
+
+        <!-- Image -->
+        <div class="detail-img">
+            <img th:if="${product.images != null and !product.images.isEmpty()}"
+                 th:src="${product.images[0]}"
+                 th:alt="${product.name}"/>
+            <div class="detail-img-placeholder"
+                 th:unless="${product.images != null and !product.images.isEmpty()}">🐻</div>
+        </div>
+
+        <!-- Info -->
+        <div class="detail-info">
+            <p class="detail-cat"   th:text="${product.category}">Category</p>
+            <h1 class="detail-name" th:text="${product.name}">Product Name</h1>
+            <p class="detail-price" th:text="'$' + ${#numbers.formatDecimal(product.price, 1, 2)}">$0.00</p>
+
+            <span class="badge in-stock"  th:if="${product.inStock}">In Stock</span>
+            <span class="badge out-stock" th:unless="${product.inStock}">Out of Stock</span>
+
+            <!-- Add to cart form -->
+            <form th:if="${product.inStock}"
+                  th:action="@{/cart}" method="post" class="detail-form">
+                <input type="hidden" name="productId" th:value="${product.id}"/>
+
+                <div class="detail-field">
+                    <label for="size">Size</label>
+                    <select id="size" name="size" class="detail-select" required>
+                        <option value="" disabled selected>Select a size</option>
+                        <option th:each="size : ${product.sizes}"
+                                th:value="${size}"
+                                th:text="${size}">Size</option>
+                    </select>
+                </div>
+
+                <div class="detail-field">
+                    <label for="quantity">Quantity</label>
+                    <input id="quantity" type="number" name="quantity"
+                           class="detail-qty" value="1" min="1" max="99"/>
+                </div>
+
+                <button type="submit" class="btn btn-add-cart">Add to Cart</button>
+            </form>
+
+            <p class="detail-unavailable" th:unless="${product.inStock}">
+                This item is currently out of stock.
+            </p>
+        </div>
+    </div>
+</main>
+
+<div th:replace="~{fragments/footer :: footer}"></div>
+
+</body>
+</html>
