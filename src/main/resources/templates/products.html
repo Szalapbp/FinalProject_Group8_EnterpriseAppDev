@@ -11,8 +11,8 @@
 <div th:replace="~{fragments/header :: header}"></div>
 
 <form th:action="@{/products}" method="get" class="controls" id="filterForm">
-    <input type="text" name="search" placeholder="Search…"
-           th:value="${search}" oninput="debounce()"/>
+<!--    <input type="text" name="search" placeholder="Search…"-->
+<!--           th:value="${search}" oninput="debounce()"/>-->
     <input type="hidden" name="category" th:value="${selectedCategory}"/>
     <input type="hidden" name="sort"     th:value="${selectedSort}"/>
 
@@ -27,13 +27,13 @@
            class="pill" th:classappend="${selectedCategory == 'Accessories'} ? ' active'">Accessories</a>
     </div>
 
-    <select name="sort" onchange="this.form.submit()">
-        <option value=""           th:selected="${selectedSort == '' or selectedSort == null}">Sort: Default</option>
-        <option value="featured"   th:selected="${selectedSort == 'featured'}">Featured First</option>
-        <option value="price_asc"  th:selected="${selectedSort == 'price_asc'}">Price: Low–High</option>
-        <option value="price_desc" th:selected="${selectedSort == 'price_desc'}">Price: High–Low</option>
-        <option value="name"       th:selected="${selectedSort == 'name'}">Name A–Z</option>
-    </select>
+<!--    <select name="sort" onchange="this.form.submit()">-->
+<!--        <option value=""           th:selected="${selectedSort == '' or selectedSort == null}">Sort: Default</option>-->
+<!--        <option value="featured"   th:selected="${selectedSort == 'featured'}">Featured First</option>-->
+<!--        <option value="price_asc"  th:selected="${selectedSort == 'price_asc'}">Price: Low–High</option>-->
+<!--        <option value="price_desc" th:selected="${selectedSort == 'price_desc'}">Price: High–Low</option>-->
+<!--        <option value="name"       th:selected="${selectedSort == 'name'}">Name A–Z</option>-->
+<!--    </select>-->
 </form>
 
 <div class="page-title">
